@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#071424" name="theme-color"/>
+<meta content="The Honjin Case Files: a snow-themed interactive archive examining Seishi Yokomizo's locked-room mystery through the original student's seven sections." name="description"/>
+<title>The Honjin Case Files — The Honjin Murders</title>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23071424'/%3E%3Cpath d='M8 39L32 17l24 22M16 34v20h32V34M26 54V40h12v14' fill='none' stroke='%23bed7ee' stroke-width='4' stroke-linejoin='round'/%3E%3Ccircle cx='51' cy='13' r='5' fill='%23a64f53'/%3E%3C/svg%3E" rel="icon"/>
+<style>
+    :root {
+      color-scheme: dark;
+      --deep:#071322;--deep2:#0b1c30;--card:#0e2237;--card2:#10263b;
+      --line:rgba(192,215,237,.14);--line-strong:rgba(192,215,237,.27);
+      --text:#edf5fa;--muted:#a8bdd0;--soft:#809ab1;--ice:#c6e3f6;
+      --gold:#d9c49d;--red:#b86b70;--accent:#9bc7e6;
+      --serif:'Iowan Old Style','Baskerville','Palatino Linotype','Book Antiqua',Georgia,serif;
+      --sans:Inter,'Segoe UI',Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;background:var(--deep);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+    ::selection{background:#6295b6;color:#061222}
+    a{color:inherit}
+    button,summary{font:inherit}
+    button{cursor:pointer}
+    :focus-visible{outline:2px solid var(--ice);outline-offset:4px;border-radius:4px}
+    .snow-scape{position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 65% -5%,rgba(37,84,125,.22),transparent 68%),linear-gradient(180deg,#081727,#071422 42%,#091727 100%)}
+    .snowfall{position:fixed;inset:0;pointer-events:none;z-index:20;overflow:hidden;opacity:.48}
+    .flake{position:absolute;top:-20px;width:var(--s);height:var(--s);background:#e3f3ff;border-radius:100%;filter:blur(var(--blur));opacity:var(--op);animation:fall var(--d) linear infinite;animation-delay:var(--delay);left:var(--x)}
+    @keyframes fall{0%{transform:translate3d(0,-15px,0)}100%{transform:translate3d(var(--drift),105vh,0)}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition:none!important}.snowfall{display:none}}
+    .topbar{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--line);background:rgba(6,18,31,.91);backdrop-filter:blur(18px)}
+    .top-inner{max-width:1440px;margin:auto;display:flex;align-items:center;gap:22px;padding:0 42px;min-height:77px}
+    .brand{white-space:nowrap;display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand-mark{display:grid;place-items:center;width:39px;height:39px;border:1px solid rgba(199,226,246,.5);color:var(--ice);font-family:var(--serif);font-size:24px;letter-spacing:0}
+    .brand-word{font-size:12px;font-weight:750;letter-spacing:.22em;line-height:1.45}
+    .brand-word span{font-size:9px;display:block;color:var(--muted);letter-spacing:.27em;font-weight:500}
+    .navlinks{display:flex;flex:1;gap:24px;justify-content:center;overflow:auto;scrollbar-width:none}
+    .navlinks::-webkit-scrollbar{display:none}
+    .navlinks a{font-size:10px;letter-spacing:.11em;text-transform:uppercase;text-decoration:none;color:var(--muted);white-space:nowrap;font-weight:700;transition:color .2s}
+    .navlinks a:hover,.navlinks a.active{color:var(--ice)}
+    .seal-button{background:transparent;color:var(--ice);padding:10px 13px;border:1px solid var(--line-strong);border-radius:4px;white-space:nowrap;font-size:11px;letter-spacing:.06em;transition:background .2s}
+    .seal-button:hover{background:rgba(149,192,219,.1)}
+    .container{max-width:1300px;margin:0 auto;padding:0 42px}
+    .hero{min-height:675px;position:relative;display:flex;align-items:center;isolation:isolate;overflow:hidden;border-bottom:1px solid var(--line)}
+    .hero:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#081627 2%,rgba(8,22,39,.91) 27%,rgba(8,22,39,.34) 71%,rgba(8,22,39,.33)),linear-gradient(0deg,#071322 1%,transparent 28%)}
+    .estate-art{position:absolute;inset:0 0 0 auto;width:78%;height:100%;z-index:-2;opacity:.87}
+    .hero-content{position:relative;padding:85px 0 115px;max-width:770px}
+    .eyebrow{font-size:10px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:12px}
+    .eyebrow:before{content:"";display:inline-block;width:23px;height:1px;background:var(--gold)}
+    .hero h1{font-family:var(--serif);font-size:clamp(64px,9vw,128px);font-weight:400;letter-spacing:-.047em;line-height:.82;margin:33px 0 24px;text-shadow:0 8px 40px rgba(0,0,0,.35)}
+    .hero h1 em{color:#d0e7f5;font-weight:400;font-style:italic}
+    .hero h1 span{display:block}
+    .hero-sub{font-size:clamp(16px,1.5vw,19px);max-width:525px;color:#c1d4e3;line-height:1.7;margin:33px 0}
+    .hero-meta{display:flex;gap:18px;flex-wrap:wrap;margin:32px 0 0;color:#c1d4e3;font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+    .hero-meta span+span:before{content:'•';color:#6888a1;margin-right:18px}
+    .actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:34px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 19px;border-radius:4px;text-decoration:none;text-transform:uppercase;font-size:11px;letter-spacing:.12em;font-weight:750;border:1px solid var(--line-strong);transition:transform .2s,background .2s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:#cce4f3;color:#092037;border-color:transparent}
+    .btn-outline{background:rgba(6,21,36,.35);color:var(--ice)}
+    .hero-tag{position:absolute;bottom:38px;right:45px;display:flex;align-items:center;gap:12px;text-transform:uppercase;color:#afc1d0;letter-spacing:.2em;font-size:10px}
+    .hero-tag:before{content:"";width:48px;height:1px;background:#97afbf}
+    .notice{border-bottom:1px solid var(--line);background:rgba(20,42,62,.55)}
+    .notice .container{display:flex;align-items:center;gap:13px;min-height:63px;padding-top:11px;padding-bottom:11px;color:#bad1e1;font-size:12px}
+    .notice strong{color:#e1eff8}
+    .diamond{width:9px;height:9px;transform:rotate(45deg);border:1px solid #a7cde9;flex:none}
+    .layout{display:grid;grid-template-columns:235px minmax(0,1fr);gap:53px;padding-top:75px;padding-bottom:100px}
+    .sidebar{position:relative}
+    .sidebar-inner{position:sticky;top:109px}
+    .side-label{font-size:10px;letter-spacing:.2em;color:var(--soft);text-transform:uppercase;border-bottom:1px solid var(--line);padding:0 0 17px}
+    .side-nav{margin:15px 0 32px;display:flex;flex-direction:column;gap:0}
+    .side-nav a{border-left:1px solid var(--line);padding:13px 0 13px 17px;text-decoration:none;color:var(--muted);font-size:12px;transition:color .2s,border .2s,background .2s}
+    .side-nav a span{font-size:10px;color:#6d94b0;margin-right:9px;font-variant-numeric:tabular-nums}
+    .side-nav a:hover,.side-nav a.active{border-left:2px solid #c8e2f5;color:#f4faff;background:linear-gradient(90deg,rgba(101,152,188,.09),transparent)}
+    .side-foot{border:1px solid var(--line);padding:16px;color:var(--muted);font-size:11px;line-height:1.8}
+    .side-foot strong{display:block;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-size:10px;margin-bottom:6px}
+    .chapters{min-width:0}
+    .chapter{padding:11px 0 85px;scroll-margin-top:100px;position:relative}
+    .chapter+.chapter{border-top:1px solid var(--line);padding-top:72px}
+    .chapter-header{margin-bottom:31px}
+    .serial{font-size:10px;letter-spacing:.26em;color:var(--gold);text-transform:uppercase;font-weight:750;margin-bottom:17px}
+    h2{font-family:var(--serif);font-size:clamp(37px,4.5vw,60px);letter-spacing:-.032em;line-height:1.08;font-weight:400;margin:0 0 12px}
+    h3{font-family:var(--serif);font-size:26px;font-weight:400;margin:0 0 13px;color:#f3f7fa}
+    h4{font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;color:#d9eaf5}
+    .section-deck{color:#96b4c9;max-width:700px;font-family:var(--serif);font-style:italic;font-size:20px;margin:0}
+    .copy{color:#bdd1e1;font-size:14px;line-height:1.91;max-width:820px}
+    .copy p{margin:0 0 20px}
+    .copy strong{color:var(--text)}
+    .highlight{display:grid;grid-template-columns:4px 1fr;margin:27px 0;border:1px solid var(--line);background:linear-gradient(95deg,rgba(43,83,112,.2),rgba(14,32,52,.45));overflow:hidden}
+    .highlight:before{content:"";background:#b9d7ea}
+    .highlight .quote{font:italic 23px/1.52 var(--serif);color:#e2f1fa;padding:23px 27px}
+    .insight-tag{font:700 10px var(--sans);letter-spacing:.18em;text-transform:uppercase;display:block;color:var(--gold);margin-bottom:10px}
+    .fact-grid,.evidence-grid,.people-grid,.thought-grid,.attack-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .fact-grid{grid-template-columns:repeat(4,minmax(0,1fr));margin:28px 0}
+    .fact{border:1px solid var(--line);padding:20px 14px;min-height:143px;background:linear-gradient(140deg,rgba(23,52,76,.7),rgba(14,30,47,.85))}
+    .fact-num{color:var(--gold);font:700 10px var(--sans);letter-spacing:.15em}
+    .fact-title{font-size:12px;margin:28px 0 0;color:#e8f4fc;font-weight:700}
+    .fact-caption{font-size:11px;color:var(--muted);line-height:1.5;margin-top:5px}
+    .subsection-title{color:var(--gold);font-size:10px;letter-spacing:.21em;text-transform:uppercase;font-weight:750;margin:31px 0 15px}
+    details.classified{border:1px solid var(--line);background:linear-gradient(120deg,rgba(18,42,64,.85),rgba(9,25,43,.88));margin:10px 0;position:relative;transition:border .2s}
+    details.classified:hover,details.classified[open]{border-color:rgba(163,202,230,.4)}
+    details.classified>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px;cursor:pointer;font-size:12px;font-weight:750;letter-spacing:.04em;color:#e3eef6}
+    details.classified>summary::-webkit-details-marker{display:none}
+    .lock-symbol{color:#a9bfd0;font-size:14px;margin-right:9px}
+    .summary-title{display:flex;align-items:center;gap:5px}
+    .summary-label{font-size:10px;color:#aac4d8;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;font-weight:550}
+    .chev{width:9px;height:9px;border-right:1px solid var(--ice);border-bottom:1px solid var(--ice);transform:rotate(45deg);transition:transform .2s;margin-right:5px;flex:none}
+    details[open] .chev{transform:rotate(225deg)}
+    .reveal{padding:0 20px 20px;color:#c5d9e8;font-size:13px;line-height:1.85;animation:reveal .25s ease-out}
+    .reveal p{margin:0}
+    .reveal strong{color:var(--text)}
+    @keyframes reveal{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+    .thin-rule{border:0;border-top:1px solid var(--line);margin:28px 0}
+    .mechanism{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px;counter-reset:mech}
+    .mech-step{padding:14px 11px;border:1px solid var(--line);background:rgba(12,28,45,.85);text-align:center;position:relative}
+    .mech-step:not(:last-child):after{content:'→';position:absolute;right:-11px;top:43%;color:#bed5e4;z-index:2}
+    .mech-step span{display:block;color:var(--gold);font-size:10px;margin-bottom:7px;letter-spacing:.1em}
+    .mech-step strong{font-size:11px;display:block;color:var(--text);line-height:1.45}
+    .mech-note{font-size:11px;color:#91abc0;padding-top:12px}
+    .case-card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(21,47,70,.68),rgba(11,27,44,.93));padding:23px;display:flex;flex-direction:column;min-height:300px}
+    .case-overline{font-size:10px;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:18px}
+    .case-card h3{margin-bottom:6px}
+    .case-card ul{padding:0;list-style:none;margin:13px 0 10px;display:grid;gap:12px;color:#b5cee0;font-size:12px;line-height:1.65}
+    .case-card li{padding-left:17px;position:relative}
+    .case-card li:before{content:'+';color:#c2dceb;position:absolute;left:0;top:0}
+    .case-card details.classified{margin-top:auto}
+    .case-card details.classified>summary{font-size:11px;padding:13px}
+    .case-card .reveal{padding:0 13px 15px}
+    .case-card details .summary-label{font-size:9px}
+    .person{border:1px solid var(--line);padding:24px;background:rgba(14,34,55,.8)}
+    .person-head{display:flex;gap:15px;align-items:center;margin-bottom:16px}
+    .portrait{width:57px;height:67px;flex:none;display:grid;place-items:center;background:linear-gradient(145deg,#233e58,#0a1a2e);border:1px solid #46637a;font:30px var(--serif);color:#cbe3f0;position:relative;overflow:hidden}
+    .portrait:after{content:"";position:absolute;inset:8px;border:1px solid rgba(199,228,246,.14)}
+    .person h3{font-size:23px;margin:0 0 2px}
+    .person-role{color:#92adc2;font-size:10px;text-transform:uppercase;letter-spacing:.14em}
+    .traits{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 21px}
+    .trait{color:#afc5d8;font-size:10px;padding:5px 8px;border:1px solid var(--line);background:#122b43}
+    .person details.classified{margin:0}
+    .person details.classified>summary{padding:14px;font-size:11px}
+    .person .reveal{padding:0 14px 15px}
+    .attack-card{padding:25px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(24,49,72,.75),rgba(11,28,44,.8));position:relative}
+    .attack-card .case-overline{margin-bottom:25px}
+    .attack-card h3{font-size:30px}
+    .attack-label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin-top:16px;margin-bottom:5px}
+    .attack-value{font-size:13px;color:#c2d5e5;line-height:1.75}
+    .deduction-list{display:grid;gap:10px;margin-top:19px}
+    .deduction{display:grid;grid-template-columns:43px 1fr;align-items:start;gap:11px;border-bottom:1px solid var(--line);padding:15px 0}
+    .deduction i{font:italic 27px var(--serif);color:#779bb9}
+    .deduction p{font-size:13px;color:#d0dfeb;margin:0;line-height:1.8}
+    .thought-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .thought{padding:25px 24px;border:1px solid var(--line);background:rgba(14,33,53,.74);position:relative}
+    .thought:before{content:"";position:absolute;top:0;left:25px;width:29px;height:2px;background:var(--gold)}
+    .thought-no{font:italic 29px var(--serif);color:#6d91ac;margin-bottom:22px}
+    .thought h3{font-size:24px}
+    .thought p{color:#b9cee0;font-size:13px;line-height:1.85;margin:0}
+    .case-closed{border:1px solid rgba(213,195,153,.35);padding:37px;margin-top:23px;background:linear-gradient(120deg,rgba(81,78,76,.12),rgba(15,34,52,.8))}
+    .case-closed .overline{font-size:10px;color:var(--gold);letter-spacing:.19em;text-transform:uppercase;margin-bottom:13px}
+    .case-closed p{font:italic 23px/1.55 var(--serif);color:#e4f1f9;margin:0}
+    .quiz-shell{border:1px solid var(--line);padding:25px;background:rgba(19,41,62,.7);margin-top:27px}
+    .quiz-top{display:flex;gap:12px;align-items:center;justify-content:space-between;color:var(--gold);font-size:10px;text-transform:uppercase;letter-spacing:.18em}
+    .quiz-question{font:26px/1.3 var(--serif);margin:17px 0;color:#f0f8fc}
+    .quiz-answers{display:grid;gap:8px}
+    .answer{border:1px solid var(--line);padding:13px 15px;text-align:left;background:#0b1c2f;color:#d4e5f0;font-size:12px;transition:background .2s,border .2s}
+    .answer:hover{background:#153550;border-color:#6e9ab9}
+    .answer:disabled{cursor:default;opacity:.85}
+    .answer.correct{border-color:#7bb5a3;background:rgba(52,111,94,.18)}
+    .answer.incorrect{border-color:#bf7f88;background:rgba(145,69,79,.17)}
+    .quiz-feedback{color:#cbdce9;font-size:12px;margin-top:16px;min-height:20px}
+    .quiz-bottom{display:flex;justify-content:flex-end;margin-top:15px}
+    .quiz-btn{background:#cce4f3;color:#0a2338;border:0;padding:10px 17px;font-weight:750;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+    .quiz-btn[disabled]{opacity:.4;cursor:default}
+    .source-panel{margin-top:35px;padding-top:23px;border-top:1px solid var(--line)}
+    .source-panel h3{font-size:27px}
+    .source-list{padding-left:20px;color:#afc5d6;font-size:12px;line-height:1.9}
+    .source-list li{margin-bottom:13px}
+    .source-list a{color:#c2e3f7;text-decoration-color:#6e97b6;text-underline-offset:3px}
+    .source-note{font-size:11px;color:#829eb4;margin-top:16px}
+    .footer{border-top:1px solid var(--line);padding:35px 0 55px;background:#071321}
+    .footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .footer p{margin:0;color:#95afc1;font-size:11px;line-height:1.9}
+    .footer strong{color:#d9eaf5;letter-spacing:.13em}
+    .status-toast{position:fixed;bottom:25px;right:25px;z-index:80;background:#d2eaf8;color:#0b263c;padding:13px 17px;box-shadow:0 15px 35px #02081088;font-size:12px;font-weight:750;border-radius:4px;opacity:0;transform:translateY(12px);transition:.25s;pointer-events:none}
+    .status-toast.show{opacity:1;transform:translateY(0)}
+    @media(max-width:1140px){.top-inner{padding:0 26px}.navlinks{gap:14px}.container{padding-left:27px;padding-right:27px}.layout{grid-template-columns:190px minmax(0,1fr);gap:29px}.fact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero h1{font-size:100px}}
+    @media(max-width:820px){.top-inner{flex-wrap:wrap;gap:0;min-height:65px;padding:12px 20px}.brand{flex:1}.navlinks{order:3;flex:0 0 100%;width:100%;justify-content:flex-start;padding-top:11px;gap:21px}.seal-button{font-size:10px}.layout{display:block;padding-top:36px}.sidebar{display:none}.hero{min-height:660px}.estate-art{width:108%;right:-40%}.hero-content{padding:68px 0 105px}.hero h1{font-size:clamp(65px,13vw,105px)}.hero-tag{right:28px}.chapter+.chapter{padding-top:50px}.chapter{padding-bottom:55px}}
+    @media(max-width:570px){.container{padding-left:20px;padding-right:20px}.hero{min-height:620px}.hero h1{font-size:clamp(59px,15vw,83px)}.hero-meta{gap:8px;font-size:9px}.hero-meta span+span:before{margin-right:8px}.hero-sub{font-size:15px}.hero-tag{bottom:22px;right:17px;font-size:8px}.fact-grid,.evidence-grid,.people-grid,.thought-grid,.attack-grid{grid-template-columns:1fr}.fact-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.fact{min-height:112px;padding:14px}.fact-title{margin-top:12px}.mech-step strong{font-size:10px}.mechanism{grid-template-columns:repeat(2,minmax(0,1fr))}.mech-step:nth-child(2):after{display:none}.mech-step{min-height:85px}.hero-content{padding-top:42px}.notice .container{font-size:11px}.chapter{padding-bottom:45px}.chapter+.chapter{padding-top:43px}.case-closed{padding:23px}.case-closed p{font-size:20px}}
+    @media print{body{background:#fff;color:#000}.snow-scape,.snowfall,.topbar,.sidebar,.hero-tag,.seal-button,.quiz-shell,.footer{display:none!important}.hero{min-height:auto;background:#fff;color:#000}.hero-content{padding:25px 0}.hero h1,.copy,.copy p,h2,h3,h4,.thought p,.attack-value{color:#000!important}.layout{display:block}.chapter{break-inside:avoid}.chapter,.chapter+.chapter{padding:20px 0}details.classified>summary{color:#000!important}.reveal{color:#111!important}.case-card,.person,.thought,.attack-card{break-inside:avoid;background:#fff;border:1px solid #999}.source-list,.source-note{color:#333}.snowfall{display:none}}
+  
+    /* Compact reader-first edition: no filler cards or oversized non-content blocks. */
+    .hero{min-height:315px}
+    .hero-content{padding:70px 0 70px;max-width:670px}
+    .hero h1{font-size:clamp(53px,7vw,94px);line-height:.9;margin:23px 0 0}
+    .estate-art{width:68%;opacity:.72}
+    .layout{padding-top:52px;padding-bottom:65px}
+    .chapter{padding-bottom:57px}
+    .chapter+.chapter{padding-top:56px}
+    .chapter-header{margin-bottom:23px}
+    .chapter h2{font-size:clamp(34px,4vw,52px)}
+    .case-card{min-height:0}
+    .case-card-wide{grid-column:1 / -1}
+    .case-card-wide ul{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:17px}
+    .case-card-wide details.classified{margin-top:16px}
+    .thought-wide{grid-column:1/-1}
+    .thought-wide .thought-no{margin-bottom:10px}
+    .scene-significance{margin-top:28px;padding-top:23px;border-top:1px solid var(--line)}
+    .scene-significance h3{font-size:25px}
+    .scene-significance p{font-size:14px;line-height:1.9;color:#bdd1e1;max-width:820px;margin:0}
+    .source-panel{margin-top:33px}
+    .source-list li{margin-bottom:6px}
+    .footer{padding:21px 0 28px}
+    @media(max-width:820px){.hero{min-height:275px}.hero-content{padding:54px 0 58px}.estate-art{width:105%;right:-43%}.layout{padding-top:28px}.chapter{padding-bottom:42px}.chapter+.chapter{padding-top:40px}}
+    @media(max-width:570px){.hero{min-height:255px}.hero h1{font-size:clamp(53px,13.5vw,76px)}.hero-content{padding:49px 0 50px}.case-card-wide ul{grid-template-columns:1fr}.chapter h2{font-size:36px}}
+    
+/* Student submission: only the seven provided sections and spoiler reveals. */
+.layout{display:block;max-width:1060px;margin:0 auto;padding-top:46px;padding-bottom:38px}
+.chapters{width:100%}
+.hero{min-height:295px}
+.hero-content{padding:54px 0 54px}
+.hero h1{margin:16px 0 0;font-size:clamp(55px,7.3vw,92px)}
+.eyebrow{font-size:11px;letter-spacing:.20em}
+.chapter{padding-bottom:52px}
+.chapter+.chapter{padding-top:46px}
+.chapter-header{margin-bottom:19px}
+.case-card{min-height:0}
+.case-card ul{margin-bottom:0}
+.case-card-wide ul{display:block}
+.thought-no,.portrait,.person-role{display:none}
+.person-head{margin-bottom:14px}
+.thought h3{margin-top:0}
+.thought{padding:24px}
+.case-card-wide{grid-column:1/-1}
+.thought-wide{grid-column:1/-1}
+@media(max-width:820px){.layout{padding-top:28px}.hero{min-height:265px}.hero-content{padding:48px 0 54px}}
+@media(max-width:570px){.hero{min-height:242px}.hero h1{font-size:clamp(52px,13vw,72px)}.top-inner{padding:11px 18px}.navlinks{gap:17px}.layout{padding-bottom:24px}.chapter,.chapter+.chapter{padding-top:30px;padding-bottom:32px}}
+</style>
+</head>
+<body>
+<div aria-hidden="true" class="snow-scape"></div><div aria-hidden="true" class="snowfall" id="snowfall"></div>
+<header class="topbar">
+<div class="top-inner">
+<a aria-label="The Honjin Murders — top of page" class="brand" href="#top"><span class="brand-word">THE HONJIN MURDERS</span></a>
+<nav aria-label="Main chapters" class="navlinks">
+<a href="#overview">Overview</a><a href="#crime-scene">Scene</a><a href="#evidence">Evidence</a><a href="#people">People</a><a href="#attacks">Attacks</a><a href="#deductions">Deduction</a><a href="#analysis">Analysis</a>
+</nav>
+<button class="seal-button" id="seal-all" title="Hide all revealed spoilers" type="button">Hide all spoilers</button>
+</div>
+</header>
+<main id="top">
+<section aria-label="The Honjin Murders" aria-labelledby="hero-title" class="hero">
+<svg aria-label="Stylized illustration of a snow-covered Japanese estate at night, with mountain silhouettes and a glowing moon" class="estate-art" preserveaspectratio="xMidYMid slice" role="img" viewbox="0 0 1200 700">
+<defs>
+<lineargradient id="sky" x1="0" x2=".6" y1="0" y2="1"><stop stop-color="#183752"></stop><stop offset=".57" stop-color="#0c2238"></stop><stop offset="1" stop-color="#0a1b2e"></stop></lineargradient>
+<lineargradient id="ground" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#d9eafa" stop-opacity=".40"></stop><stop offset="1" stop-color="#34536b" stop-opacity=".18"></stop></lineargradient>
+<radialgradient id="moon"><stop stop-color="#dae9f1" stop-opacity=".96"></stop><stop offset=".65" stop-color="#c0dbea" stop-opacity=".70"></stop><stop offset="1" stop-color="#b4d5ef" stop-opacity="0"></stop></radialgradient>
+<lineargradient id="roof" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#708ca2"></stop><stop offset="1" stop-color="#17283a"></stop></lineargradient>
+<filter id="glow"><fegaussianblur stddeviation="18"></fegaussianblur></filter>
+</defs>
+<rect fill="url(#sky)" height="700" width="1200"></rect>
+<circle cx="830" cy="156" fill="#b5d3e7" filter="url(#glow)" opacity=".14" r="108"></circle>
+<circle cx="830" cy="156" fill="url(#moon)" opacity=".85" r="77"></circle>
+<path d="M0 405L115 340l80 30 130-93 95 61 156-131 132 86 126-80 122 105 147-39 117 68v280H0Z" fill="#162d43" opacity=".65"></path>
+<path d="M0 465L130 394l100 34 125-81 107 65 120-58 140 86 155-88 141 62 182-69V700H0Z" fill="#102336" opacity=".87"></path>
+<g fill="#081b2b" opacity=".46">
+<path d="M70 485l36-96 36 96h-23v34H94v-34ZM155 476l41-113 41 113h-27v45h-29v-45ZM1108 455l29-77 29 77h-18v53h-23v-53ZM1010 465l48-139 48 139h-32v66h-32v-66Z"></path>
+</g>
+<path d="M0 586Q210 540 380 578T790 555T1200 564V700H0Z" fill="url(#ground)"></path>
+<g transform="translate(485 320)">
+<path d="M-15 176h624v122H-15Z" fill="#081622"></path>
+<path d="M10 169L67 83h455l76 86Z" fill="#10243a"></path>
+<path d="M0 171L67 92h459l73 79" fill="none" stroke="#9ab2c4" stroke-opacity=".42" stroke-width="9"></path>
+<path d="M38 143L73 96h446l45 47" fill="none" stroke="#d4e7f2" stroke-linecap="round" stroke-opacity=".53" stroke-width="6"></path>
+<path d="M35 178h527v9H35Z" fill="#354c60"></path>
+<g fill="#1a3148" stroke="#5e788a" stroke-opacity=".38" stroke-width="2">
+<rect height="98" width="107" x="53" y="188"></rect><rect height="98" width="107" x="170" y="188"></rect><rect height="98" width="107" x="288" y="188"></rect><rect height="98" width="107" x="407" y="188"></rect>
+</g>
+<g stroke="#96abc0" stroke-opacity=".3" stroke-width="3"><path d="M109 188v98M53 233h107M225 188v98M170 233h107M343 188v98M288 233h107M465 188v98M407 233h107"></path></g>
+<rect fill="#dac8a2" height="90" opacity=".27" width="112" x="285" y="193"></rect>
+<rect fill="#f7ca81" filter="url(#glow)" height="70" opacity=".26" width="93" x="294" y="202"></rect>
+<path d="M68 78L163 32h263l103 46Z" fill="#122438"></path>
+<path d="M60 80L163 41h260l107 39" fill="none" stroke="#bdd1df" stroke-opacity=".52" stroke-width="7"></path>
+<path d="M167 79h264v80H167Z" fill="#102133"></path>
+<path d="M177 87h244v67H177Z" fill="none" stroke="#6e8aa1" stroke-opacity=".3" stroke-width="2"></path>
+<path d="M299 87v67M177 123h244" stroke="#6e8aa1" stroke-opacity=".27" stroke-width="2"></path>
+</g>
+<g opacity=".8" transform="translate(1028 452)">
+<path d="M0 45h70m-35-85v175" stroke="#2b4961" stroke-width="10"></path>
+<path d="M-10 10l45-40 45 40z" fill="#172b40" stroke="#b4ccdc" stroke-opacity=".42" stroke-width="3"></path>
+<path d="M0 11h70v50H0Z" fill="#12283c"></path><path d="M12 13h46v44H12Z" fill="#d3c6a0" opacity=".28"></path>
+</g>
+<path d="M0 630Q180 620 350 635T710 610T1200 622" fill="none" stroke="#e0ecf4" stroke-opacity=".25" stroke-width="5"></path>
+<g fill="#e1f1fb" opacity=".7"><circle cx="230" cy="230" r="2"></circle><circle cx="335" cy="145" r="2"></circle><circle cx="580" cy="130" r="1.4"></circle><circle cx="940" cy="95" r="2.3"></circle><circle cx="1085" cy="207" r="1.7"></circle><circle cx="715" cy="246" r="1.8"></circle><circle cx="456" cy="278" r="1.2"></circle><circle cx="1100" cy="385" r="1.6"></circle><circle cx="960" cy="279" r="1.5"></circle></g>
+</svg>
+<div class="container" style="width:100%"><div class="hero-content">
+<div class="eyebrow">SEISHI YOKOMIZO</div>
+<h1 id="hero-title">The <em>Honjin</em><span>Murders.</span></h1>
+</div></div>
+</section>
+<div class="container layout">
+
+<div class="chapters">
+<section aria-labelledby="overview-title" class="chapter" id="overview">
+<div class="chapter-header"><h2 id="overview-title">Case Overview / Exposition</h2></div>
+<div class="copy">
+<p>The murders of Kenzo and Katsuko Ichiyanagi present the structure of an impossible crime. The newlyweds are discovered dead inside a locked room, with no clear evidence of how the murderer could have escaped. There is a bloodstained sword in the courtyard outside the annex along with an absence of footprints. The evidence points toward a mysterious three-fingered man which, all in all, makes everything very hard to explain.</p>
+<p>The reality of the crime demonstrates that evidence is not always as reliable as it may seem. Throughout the investigation, convincing clues lead investigators astray from the ultimate conclusion. The interesting elements of the mystery lie not exclusively with the killer, but with the manipulation that conceals the killer.</p>
+<p>This case archive examines the crime scene, the significance of Kenzo’s diaries, the involvement of the suspects, and Kindaichi’s deductions to understand how such an elaborate ploy was carried out.</p>
+</div>
+</section>
+<section aria-labelledby="crime-title" class="chapter" id="crime-scene">
+<div class="chapter-header"><h2 id="crime-title">Crime Scene<br/>Reconstruction</h2></div>
+<div class="copy"><p>The crime scene of the Ichiyanagi murders presents several unusual circumstances that make the possibility of an outside murderer difficult to explain. Kenzo and Katsuko are discovered dead inside a locked-room annex. The bloodstained murder weapon is found outside, in the courtyard. The absence of footprints in the snow surrounding the sword complicates the investigation; there appears to be no possible way for the murderer to have escaped. On top of this, around the time the murders were said to take place, sounds from a koto were heard being played.</p></div>
+<details class="classified" data-spoiler=""><summary><span class="summary-title">Secrets behind the killer</span><span class="summary-label">Reveal<span aria-hidden="true" class="chev"></span></span></summary><div class="reveal">Kenzo murdered Katsuko before taking his own life. He intended arrangements to make it look like a double murder committed by an outsider.</div></details>
+<details class="classified" data-spoiler=""><summary><span class="summary-title"> The sword mechanism</span><span class="summary-label">Reveal<span aria-hidden="true" class="chev"></span></span></summary><div class="reveal">A mechanism involving a koto string and a waterwheel pulled the murder weapon outside the annex. It was meant to create the illusion that someone carried it away.</div></details>
+<details class="classified" data-spoiler=""><summary><span class="summary-title"> The missing footprints</span><span class="summary-label">Reveal<span aria-hidden="true" class="chev"></span></span></summary><div class="reveal">Unexpected snowfall covered the misleading footprints that Kenzo had intended to leave as part of his deception.</div></details>
+<div class="scene-significance"><h3>Crime Scene Significance</h3><p>The significance of the crime scene lies in how the physical evidence led investigators to make incorrect assumptions. Instead of questioning a potential outside murderer’s existence, they tried to explain how a murderer could have escaped the locked-room mystery.</p></div></section>
+<section aria-labelledby="evidence-title" class="chapter" id="evidence">
+<div class="chapter-header"><h2 id="evidence-title">Evidence Locker</h2></div>
+<div class="copy"><p>The investigation of the Ichiyanagi murders reveals that evidence is not always able to be trusted. Several clues seemed to identify an outside murderer, but closer examination revealed contradictions that challenged the investigators’ original judgements.</p></div>
+<div class="evidence-grid">
+<article class="case-card"><div class="case-overline">FILE 01</div><h3>Kenzo's Diaries</h3><ul><li>Kenzo maintained extremely neat and organized diaries.</li><li>Entries suggested an enemy, with a picture of the three-fingered man in Kenzo’s album.</li><li>Several pages had been removed or burned.</li></ul>
+
+</article>
+<article class="case-card"><div class="case-overline">FILE 02</div><h3>The Three-Fingered Man</h3><ul><li>A mysterious three-fingered man was seen near the estate.</li><li>The man’s fingerprints were connected to the scene.</li><li>Evidence suggested that he had a connection with Kenzo.</li></ul>
+
+</article>
+<article class="case-card case-card-wide"><div class="case-overline">FILE 03</div><h3>The Letter</h3><ul><li>Kenzo appeared to have received a threatening message.</li><li>The message supported the revenge theory.</li><li>Investigators connected the threat with the three-fingered man.</li></ul>
+
+</article>
+</div>
+</section>
+<section aria-labelledby="people-title" class="chapter" id="people">
+<div class="chapter-header"><h2 id="people-title">Suspect Profiles and Motives</h2></div>
+<div class="people-grid">
+<article class="person"><div class="person-head"><div><h3>Kenzo Ichiyanagi</h3></div></div><div class="traits"><span class="trait">Proud</span><span class="trait">Traditional</span><span class="trait">Organized</span><span class="trait">Concerned with reputation</span></div><details class="classified" data-spoiler=""><summary><span>True involvement</span><span class="summary-label">Reveal<span aria-hidden="true" class="chev"></span></span></summary><div class="reveal">Kenzo murdered Katsuko and took his own life; he did so because he couldn’t accept Katsuko’s past and was scared of breaking ties and ruining his reputation.</div></details></article>
+<article class="person"><div class="person-head"><div><h3>Katsuko Ichiyanagi</h3></div></div><div class="traits"><span class="trait">Honest</span><span class="trait">Lower class</span><span class="trait">Central in the conflict</span></div><details class="classified" data-spoiler=""><summary><span>True involvement</span><span class="summary-label">Reveal<span aria-hidden="true" class="chev"></span></span></summary><div class="reveal">Disclosed her previous sexual relationship to Kenzo before their marriage. She was a victim, not a participant.</div></details></article>
+<article class="person"><div class="person-head"><div><h3>Saburo Ichiyanagi</h3></div></div><div class="traits"><span class="trait">Intelligent</span><span class="trait">Fascinated by detective stories</span><span class="trait">Very involved in investigation</span></div><details class="classified" data-spoiler=""><summary><span>True involvement</span><span class="summary-label">Reveal<span aria-hidden="true" class="chev"></span></span></summary><div class="reveal">Saburo helped construct the false evidence around the murders. He manipulated Kenzo’s diaries, pushed an outside-killer theory, and staged an attack on himself. He was motivated by financial gain from life insurance and proving himself.</div></details></article>
+<article class="person"><div class="person-head"><div><h3>The Three-Fingered Man</h3></div></div><div class="traits"><span class="trait">New in town</span><span class="trait">Suspicious</span><span class="trait">Seen near the property</span></div><details class="classified" data-spoiler=""><summary><span>True involvement</span><span class="summary-label">Reveal<span aria-hidden="true" class="chev"></span></span></summary><div class="reveal">The stranger had no personal involvement against Kenzo and was not responsible for the killings. He died before the murders, and his mysterious identity and severed hand were used to frame him as an outside murderer.</div></details></article>
+</div>
+</section>
+<section aria-labelledby="attacks-title" class="chapter" id="attacks">
+<div class="chapter-header"><h2 id="attacks-title">The Two Attacks</h2></div>
+<div class="attack-grid">
+<article class="attack-card"><h3>ATTACK 1</h3><div class="attack-label">Victims</div><div class="attack-value">Kenzo and Katsuko</div><div class="attack-label">Initial belief</div><div class="attack-value">An outsider murdered the newlyweds and escaped untraced.</div><div class="attack-label">Significance</div><div class="attack-value">The impossible crime scene suggested an unknown external killer.</div></article>
+<article class="attack-card"><h3>ATTACK 2</h3><div class="attack-label">Apparent victim</div><div class="attack-value">Saburo</div><div class="attack-label">Initial belief</div><div class="attack-value">The murderer returned and attacked again.</div><div class="attack-label">Significance</div><div class="attack-value">The second incident strengthened the original theory and made Saburo appear innocent.</div></article>
+</div>
+<details class="classified" data-spoiler="" style="margin-top:15px"><summary><span class="summary-title">Connection Between the Attacks</span><span class="summary-label">Reveal<span aria-hidden="true" class="chev"></span></span></summary><div class="reveal">Kenzo committed the original murder-suicide; Saburo later staged an attack on himself to show innocence and strengthen the idea that there was another murderer.</div></details>
+</section>
+<section aria-labelledby="deductions-title" class="chapter" id="deductions">
+<div class="chapter-header"><h2 id="deductions-title">Kindaichi's Final<br/>Deduction</h2></div>
+<div class="copy"><p>Kindaichi solves the mystery by questioning the evidence and what other people say about it. Rather than accepting a seemingly impossible crime, he tries to piece together a possible scenario. He considers whether the crime scene as he sees it was constructed to lead him toward an incorrect conclusion.</p></div>
+<div class="deduction-list">
+<div class="deduction"><i>01</i><p>The weapon’s location did not prove that a murderer escaped.</p></div>
+<div class="deduction"><i>02</i><p>The fingerprints didn’t prove the three-fingered man was responsible.</p></div>
+<div class="deduction"><i>03</i><p>The altered diaries might have created a manipulated false narrative.</p></div>
+<div class="deduction"><i>04</i><p>The second attack reinforced the apparent impossible crime and seemed ‘too perfect’.</p></div>
+</div>
+<details class="classified" data-spoiler="" style="margin-top:25px"><summary><span class="summary-title">Final Detective Conclusion</span><span class="summary-label">Reveal<span aria-hidden="true" class="chev"></span></span></summary><div class="reveal">Kindaichi determines that Kenzo killed Katsuko before taking his own life; Saburo manipulated the evidence to conceal the truth for money and his own ego. The impossible escape was an illusion created through the sword mechanism and structured clues.</div></details>
+</section>
+<section aria-labelledby="analysis-title" class="chapter" id="analysis">
+<div class="chapter-header"><h2 id="analysis-title">Literary Analysis</h2></div>
+<div class="thought-grid">
+<article class="thought"><h3>Pride &amp; Social Expectations</h3><p>Kenzo’s excessive obsession with meticulous perfection and, by extension, purity shows the consequences of rigid social expectations and a society that emphasizes class distinctions. His refusal to accept Katsuko or call off the marriage shows how concerned he is with his public perception and honor, even more than another individual’s life. Kenzo is unable to admit he was wrong to his family or dissolve the marriage.</p></article>
+<article class="thought"><h3>Evidence &amp; Interpretation</h3><p>Through the book, Yokomizo demonstrates that evidence can be genuine but still imply or support an incorrect conclusion. The manipulation of evidence, such as Kenzo’s diaries and the three-fingered man’s fingerprints, reveals how the interpretation of evidence can be just as important as the evidence itself.</p></article>
+<article class="thought"><h3>Intelligence Without Morality</h3><p>Saburo’s fascination with detective fiction influences his own involvement in the crime. His central place in the crime puts him in a prime situation to demonstrate his skills and intelligence. His willingness to exploit a tragedy for his own personal benefit reveals his lack of moral responsibility. He acts almost as a mystery writer controlling the inside of the story.</p></article>
+<article class="thought"><h3>Yokomizo's Misdirection</h3><p>Yokomizo uses the locked-room setting and misleading evidence to encourage readers to make the same assumptions as the investigators and hence believe in an impossible crime. By leading readers toward an incorrect conclusion with the evidence, he challenges them to look at the story from different angles to understand what really happened.</p></article>
+<article class="thought thought-wide"><h3>Final Interpretation</h3><p>The significance of The Honjin Murders extends beyond its unexpected solution. The author demonstrates the influence of pride on human behavior, and he shows that evidence can be taken in many different ways. Ultimately, the book encourages readers to question appearances and not accept the conclusions that they initially suggest.</p></article></div>
+
+
+</section>
+</div>
+</div>
+</main>
+
+
+<script>
+    (()=>{
+      'use strict';
+      const details=[...document.querySelectorAll('details[data-spoiler]')];
+      document.getElementById('seal-all').addEventListener('click',()=>{
+        details.forEach(el=>{el.open=false});
+      });
+      const snow=document.getElementById('snowfall');
+      if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        const count=window.matchMedia('(max-width: 570px)').matches?33:73;
+        for(let i=0;i<count;i++){
+          const f=document.createElement('i');f.className='flake';
+          const n=(min,max)=>min+Math.random()*(max-min);
+          f.style.setProperty('--x',n(0,100)+'%');f.style.setProperty('--s',n(1,3.1)+'px');
+          f.style.setProperty('--op',n(.26,.8).toFixed(2));f.style.setProperty('--d',n(13,32)+'s');
+          f.style.setProperty('--delay',-n(0,35)+'s');f.style.setProperty('--drift',n(-80,100)+'px');
+          f.style.setProperty('--blur',n(0,.7)+'px');snow.appendChild(f);
+        }
+      }
+      const anchors=[...document.querySelectorAll('.navlinks a,.side-nav a')];
+      const observer=new IntersectionObserver(entries=>{
+        const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+        if(visible.length){const id=visible[0].target.id;anchors.forEach(a=>{const active=a.hash==='#'+id;a.classList.toggle('active',active);active?a.setAttribute('aria-current','location'):a.removeAttribute('aria-current')})}
+      },{rootMargin:'-13% 0px -62% 0px',threshold:0});
+      document.querySelectorAll('section.chapter').forEach(s=>observer.observe(s));
+    })();
+  </script>
+</body>
+</html>
